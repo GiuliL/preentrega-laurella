@@ -1,0 +1,31 @@
+.navbar-header {
+    background-color: #8c7b75;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f4ede8;
+    padding: 10px 0;
+}
+
+.navbar-menu li {
+    margin: 0 15px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #5a504d;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #8c7b75;
+}
