@@ -3,6 +3,10 @@
     color: white;
     padding: 15px 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .navbar-menu {
@@ -11,21 +15,16 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    background-color: #f4ede8;
-    padding: 10px 0;
-}
-
-.navbar-menu li {
-    margin: 0 15px;
+    gap: 15px;
 }
 
 .navbar-menu a {
     text-decoration: none;
-    color: #5a504d;
+    color: #f4ede8;
     font-size: 18px;
     transition: color 0.3s ease;
 }
 
 .navbar-menu a:hover {
-    color: #8c7b75;
+    color: #d4c3b8;
 }
