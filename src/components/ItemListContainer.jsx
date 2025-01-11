@@ -1,6 +1,30 @@
 import React from 'react';
 
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 const ItemListContainer = ({ greeting }) => {
+    const { categoryId } = useParams();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        // Simulación de datos
+        const asyncMock = [
+            { id: 1, name: 'Lentejas', category: 'legumbres' },
+            { id: 2, name: 'Almendras', category: 'frutos-secos' },
+            { id: 3, name: 'Avena', category: 'cereales' },
+        ];
+
+        const filteredItems = categoryId
+            ? asyncMock.filter(item => item.category === categoryId)
+            : asyncMock;
+
+        setTimeout(() => {
+            setItems(filteredItems);
+        }, 1000);
+    }, [categoryId]);
+
+ const ItemListContainer = ({ greeting }) => {
     const containerStyle = {
         padding: '20px',
         margin: '20px auto',
@@ -15,10 +39,18 @@ const ItemListContainer = ({ greeting }) => {
     };
 
     return (
-        <div style={containerStyle}>
+        <div>
             <h2>{greeting}</h2>
+            <ul>
+                {items.map(item => (
+                    <li key={item.id}>
+                        <Link to={`/item/${item.id}`}>{item.name}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
 
 export default ItemListContainer;
+
