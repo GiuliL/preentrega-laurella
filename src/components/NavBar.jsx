@@ -1,19 +1,20 @@
 import React from 'react';
-import './NavBar.css';
+import { Link } from 'react-router-dom';
 import CartWidget from './CartWidget';
+import './NavBar.css';
 
 const NavBar = () => {
     return (
         <header className="navbar-header">
-            <h1>El Molino</h1>
+            <h1><Link to="/">El Molino</Link></h1>
             <nav>
                 <ul className="navbar-menu">
-                    <li><a href="#legumbres">Legumbres</a></li>
-                    <li><a href="#frutos-secos">Frutos Secos</a></li>
-                    <li><a href="#cereales">Cereales</a></li>
+                    <li><Link to="/category/legumbres">Legumbres</Link></li>
+                    <li><Link to="/category/frutos-secos">Frutos Secos</Link></li>
+                    <li><Link to="/category/cereales">Cereales</Link></li>
                 </ul>
             </nav>
-            <CartWidget /> 
+            <CartWidget />
         </header>
     );
 };
