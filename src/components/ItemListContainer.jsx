@@ -26,6 +26,12 @@ const ItemListContainer = ({ greeting }) => {
         }, 1000);
     }, [categoryId]);
 
+const { categoryId } = useParams();
+const filteredProducts = categoryId 
+    ? products.filter(product => product.category === categoryId)
+    : products;
+
+
  const ItemListContainer = ({ greeting }) => {
     const containerStyle = {
         padding: '20px',
