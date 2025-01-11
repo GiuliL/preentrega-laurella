@@ -6,7 +6,7 @@ const ItemDetailContainer = () => {
     const [item, setItem] = useState(null);
 
     useEffect(() => {
-        // Simulación de datos
+        
         const asyncMock = [
             { id: 1, name: 'Lentejas', description: 'Ricas y nutritivas', category: 'legumbres' },
             { id: 2, name: 'Almendras', description: 'Buenas para la salud', category: 'frutos-secos' },
