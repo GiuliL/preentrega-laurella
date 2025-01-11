@@ -8,7 +8,7 @@ const ItemListContainer = ({ greeting }) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        // Simulación de datos
+       
         const asyncMock = [
             { id: 1, name: 'Lentejas', category: 'legumbres' },
             { id: 2, name: 'Almendras', category: 'frutos-secos' },
