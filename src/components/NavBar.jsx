@@ -1,22 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CartWidget from './CartWidget';
-import './NavBar.css';
+import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-const NavBar = () => {
+function NavBar() {
+return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="container">
+        <Link className="navbar-brand" to="/">El Molino</Link>
+        <div className="collapse navbar-collapse">
+        <ul className="navbar-nav">
+            <li className="nav-item">
+            <Link className="nav-link" to="/category/frutos-secos">Frutos Secos</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/category/legumbres">Legumbres</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/category/cereales">Cereales</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/category/cosmetica-natural">Cosmética Natural</Link>
+            </li>
+        </ul>
+        </div>
+        <CartWidget />
+    </div>
+    </nav>
+);
+}
+
+function CartWidget() {
+    const { totalItems } = useContext(CartContext);
+    
     return (
-        <header className="navbar-header">
-            <h1><Link to="/">El Molino</Link></h1>
-            <nav>
-                <ul className="navbar-menu">
-                    <li><Link to="/category/legumbres">Legumbres</Link></li>
-                    <li><Link to="/category/frutos-secos">Frutos Secos</Link></li>
-                    <li><Link to="/category/cereales">Cereales</Link></li>
-                </ul>
-            </nav>
-            <CartWidget />
-        </header>
+        <Link to="/cart" className="btn btn-outline-light">
+        🛒 {totalItems > 0 && <span>({totalItems})</span>}
+        </Link>
     );
-};
+    }
 
 export default NavBar;
