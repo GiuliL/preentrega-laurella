@@ -1,37 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../services/firebaseConfig";
+import ItemDetail from "./ItemDetail";
 
-const ItemDetailContainer = () => {
-    const { itemId } = useParams();
-    const [item, setItem] = useState(null);
+function ItemDetailContainer() {
+const [product, setProduct] = useState(null);
+const { productId } = useParams();
 
-    useEffect(() => {
-        
-        const asyncMock = [
-            { id: 1, name: 'Lentejas', description: 'Ricas y nutritivas', category: 'legumbres' },
-            { id: 2, name: 'Almendras', description: 'Buenas para la salud', category: 'frutos-secos' },
-            { id: 3, name: 'Avena', description: 'Ideal para desayunos', category: 'cereales' },
-        ];
+useEffect(() => {
+    const fetchProduct = async () => {
+    const docRef = doc(db, "productos", productId);
+    const docSnap = await getDoc(docRef);
 
-        const foundItem = asyncMock.find(item => item.id === parseInt(itemId));
-        setTimeout(() => {
-            setItem(foundItem);
-        }, 1000);
-    }, [itemId]);
+    if (docSnap.exists()) {
+        setProduct({ id: docSnap.id, ...docSnap.data() });
+    } else {
+        console.log("No se encontró el producto");
+    }
+    };
 
-    return (
-        <div>
-            {item ? (
-                <div>
-                    <h2>{item.name}</h2>
-                    <p>{item.description}</p>
-                    <p>Categoría: {item.category}</p>
-                </div>
-            ) : (
-                <p>Cargando...</p>
-            )}
-        </div>
-    );
-};
+    fetchProduct();
+}, [productId]);
+
+return (
+    <div className="container mt-4">
+    {product ? <ItemDetail product={product} /> : <p>Cargando...</p>}
+    </div>
+);
+}
 
 export default ItemDetailContainer;
